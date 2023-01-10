@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchAuthorsAsync } from "../author/authorSlice";
 import { deleteBook } from "./BookApi";
 import { deleteBookAsync, fetchBooksAsync } from "./bookSlice";
 // import { selectBooks } from "./bookSlice";
@@ -10,12 +11,17 @@ const BookList = () => {
   //   const books = useSelector(selectBooks());
   //   const { books } = useSelector((state) => state.books.books);
   const [books, setBooks] = useState([]);
+  const [authors, setAuthors] = useState([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchBooksAsync()).then((res) => {
       setBooks(res.payload);
+    });
+
+    dispatch(fetchAuthorsAsync()).then((res) => {
+      setAuthors(res.payload);
     });
   }, [dispatch]);
 
@@ -27,6 +33,17 @@ const BookList = () => {
     };
     deleteBookNow();
   };
+
+  const findAuthorByName = (id) => {
+    if (authors.length > 0) {
+      const author = authors.find((author) => author.id === id);
+      return `${author.first_name} ${author.last_name}`;
+    } else {
+      return "Author";
+    }
+  };
+
+  console.log(findAuthorByName(1));
 
   const navigate = useNavigate();
 
@@ -47,7 +64,9 @@ const BookList = () => {
               <Card.Text>{book.description}</Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroup.Item>Author:AUthor </ListGroup.Item>
+              <ListGroup.Item>
+                Author: {findAuthorByName(book.author_id)}{" "}
+              </ListGroup.Item>
             </ListGroup>
             <Card.Body>
               <Card.Link href="#" onClick={(e) => deleteHandler(book.id)}>

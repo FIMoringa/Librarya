@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { deleteAuthor, fetchAuthor, fetchAuthors } from "./AuthorApi";
+import { deleteAuthor, fetchAuthor, fetchAuthors } from "./authorApi";
 
 const initialState = {
   authors: [],
   status: "idle",
   error: null,
+  author: {},
 };
 
 export const fetchAuthorsAsync = createAsyncThunk(
@@ -13,6 +14,14 @@ export const fetchAuthorsAsync = createAsyncThunk(
   async (id) => {
     const authors = await fetchAuthors();
     return authors;
+  }
+);
+
+export const fetchAuthorAsync = createAsyncThunk(
+  "authors/fetchAuthors",
+  async (id) => {
+    const author = await fetchAuthor(id);
+    return author;
   }
 );
 
