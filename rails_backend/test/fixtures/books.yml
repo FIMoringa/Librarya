@@ -2,8 +2,16 @@
 
 one:
   title: MyString
-  isbn: 1
+  isbn: MyString
+  author: MyString
+  price: 9.99
+  description: MyText
+  year: 1
 
 two:
   title: MyString
-  isbn: 1
+  isbn: MyString
+  author: MyString
+  price: 9.99
+  description: MyText
+  year: 1
