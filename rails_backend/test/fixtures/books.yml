@@ -3,15 +3,17 @@
 one:
   title: MyString
   isbn: MyString
-  author: MyString
   price: 9.99
   description: MyText
   year: 1
+  author: one
+  book_category: one
 
 two:
   title: MyString
   isbn: MyString
-  author: MyString
   price: 9.99
   description: MyText
   year: 1
+  author: two
+  book_category: two

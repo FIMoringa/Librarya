@@ -3,7 +3,8 @@ class BookCategoriesController < ApplicationController
 
   # GET /book_categories
   def index
-    @book_categories = BookCategory.all
+    # include books
+    @book_categories = @book_categories.includes(:books)
 
     render json: @book_categories
   end

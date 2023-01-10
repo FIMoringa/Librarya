@@ -3,7 +3,8 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
+    # include author and book_category
+    @books = @books.includes(:author, :book_category)
 
     render json: @books
   end
@@ -46,6 +47,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :isbn, :author, :price, :description, :year)
+      params.require(:book).permit(:title, :isbn, :price, :description, :year, :author_id, :book_category_id)
     end
 end
