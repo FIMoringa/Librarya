@@ -8,6 +8,7 @@ export function fetchCount(amount = 1) {
 
 export const fetchBooks = async () => {
   const { data } = await axios.get("http://localhost:3000/books");
+  console.log(data);
   return data;
 };
 
@@ -33,8 +34,6 @@ export const deleteBook = async (id) => {
   const { data } = await axios.delete(`http://localhost:3000/books/${id}`);
   return data;
 };
-
-
 
 // export const books = [
 //   {

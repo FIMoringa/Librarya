@@ -1,9 +1,14 @@
 import React from "react";
 import { Card, ListGroup } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { books } from "./BookApi";
+import { selectBooks } from "./bookSlice";
 
 const BookList = () => {
+  //   const books = useSelector(selectBooks());
+  const books = useSelector((state) => state.books.books);
+  console.log(books);
+
   const deleteHandler = (id) => {
     console.log(id);
   };
@@ -12,7 +17,9 @@ const BookList = () => {
 
   return (
     <div className="container">
-      <h1 className="mt-3 text-center text-primary">Welcome to the Librarya App</h1>
+      <h1 className="mt-3 text-center text-primary">
+        Welcome to the Librarya App
+      </h1>
       <div className="d-flex flex-wrap">
         {books.map((book) => (
           <Card
