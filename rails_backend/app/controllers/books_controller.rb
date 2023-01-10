@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
+    @books = Book.all
     # include author and book_category
     @books = @books.includes(:author, :book_category)
 

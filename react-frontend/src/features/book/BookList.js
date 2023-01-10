@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectBooks } from "./bookSlice";
+import { deleteBook } from "./BookApi";
+import { deleteBookAsync, fetchBooksAsync } from "./bookSlice";
+// import { selectBooks } from "./bookSlice";
 
 const BookList = () => {
   //   const books = useSelector(selectBooks());
-  const books = useSelector((state) => state.books.books);
-  console.log(books);
+  //   const { books } = useSelector((state) => state.books.books);
+  const [books, setBooks] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchBooksAsync()).then((res) => {
+      setBooks(res.payload);
+    });
+  }, [dispatch]);
 
   const deleteHandler = (id) => {
-    console.log(id);
+    //   dispatch(deleteBook(id));
+    const deleteBookNow = async () => {
+      await deleteBookAsync(id);
+      setBooks(books.filter((book) => book.id !== id));
+    };
+    deleteBookNow();
   };
 
   const navigate = useNavigate();
@@ -38,8 +53,11 @@ const BookList = () => {
               <Card.Link href="#" onClick={(e) => deleteHandler(book.id)}>
                 Delete book
               </Card.Link>
-              <Card.Link onClick={() => navigate("/create-book")} href="#">
+              <Card.Link onClick={() => navigate("/new")} href="#">
                 Create new book
+              </Card.Link>
+              <Card.Link onClick={() => navigate("/edit")} href="#">
+                Edit book
               </Card.Link>
             </Card.Body>
           </Card>

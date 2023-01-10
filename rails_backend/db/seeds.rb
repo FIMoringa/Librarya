@@ -30,16 +30,17 @@ books = Book.create([
     { title: "1984", isbn: "9780547928227",  price: 10.99, description: "1984 is a dystopian novel by English author George Orwell published in 1949. The novel is set in Airstrip One, a world of perpetual war, omnipresent government surveillance, and public manipulation. The superstate and its residents are dictated to by a political system euphemistically named English Socialism (Ingsoc) under the control of a privileged Inner Party elite that persecutes individualism and independent thinking as thoughtcrimes, known as 'thoughtcrime'.", year: 1949, author_id:Author.third.id, book_category_id:BookCategory.fifth.id },
 ])
 
-# 10.times do
-#     Book.create(
-#         title: Faker::Book.title,
-#         isbn: Faker::Code.isbn,
-#         price: Faker::Commerce.price,
-#         description: Faker::Lorem.paragraph,
-
-#     )
-
-# end 
+10.times do
+    Book.create(
+        title: Faker::Book.title,
+        isbn: Faker::Code.isbn,
+        price: Faker::Commerce.price,
+        description: Faker::Lorem.paragraph,
+        year: Faker::Number.between(from: 1900, to: 2021),
+        author_id: Author.all.sample.id,
+        book_category_id: BookCategory.all.sample.id
+    )
+end 
 
 
 # categories = Category.create([
