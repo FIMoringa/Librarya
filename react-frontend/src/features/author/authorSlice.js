@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { deleteAuthor, fetchAuthor, fetchAuthors } from "./authorApi";
+import {  fetchAuthor, fetchAuthors } from "./authorApi";
 
 const initialState = {
   authors: [],

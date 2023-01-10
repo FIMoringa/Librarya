@@ -3,7 +3,6 @@ import { Card, ListGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchAuthorsAsync } from "../author/authorSlice";
-import { deleteBook } from "./BookApi";
 import { deleteBookAsync, fetchBooksAsync } from "./bookSlice";
 // import { selectBooks } from "./bookSlice";
 

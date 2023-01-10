@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { deleteBook, fetchBook, fetchBooks } from "./BookApi";
+import { deleteBook, fetchBooks } from "./BookApi";
 
 const initialState = {
   books: [],

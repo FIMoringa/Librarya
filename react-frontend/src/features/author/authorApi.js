@@ -17,7 +17,7 @@ export const createAuthor = async (formData) => {
 
 export const updateAuthor = async (id, formData) => {
   const { data } = await axios.put(
-    "http://localhost:3000/authors/${id}",
+    `http://localhost:3000/authors/${id}`,
     formData
   );
   return data;
