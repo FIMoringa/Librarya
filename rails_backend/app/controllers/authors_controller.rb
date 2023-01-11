@@ -4,7 +4,6 @@ class AuthorsController < ApplicationController
   # GET /authors
   def index
     @authors = Author.all
-    # include books
     @authors = @authors.includes(:books)
 
     render json: @authors
